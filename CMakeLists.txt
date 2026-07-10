@@ -7,10 +7,11 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-find_package(Eigen5 5.0.0 REQUIRED NO_MODULE)
 
 add_library(${PROJECT_NAME} STATIC
     src/core.cpp
+    src/GeomNodes/LinearLayer.cpp
+    src/GeomNodes/MSELossLayer.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
