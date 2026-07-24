@@ -6,9 +6,9 @@
 namespace kmlcpplib {
 
 class SoftmaxLayer : public LayerBase {
-    struct Impl;
-    std::unique_ptr<Impl> pImpl;
-
+    struct {
+        Eigen::VectorXd forward;
+    } cache;
    public:
     // sigmoid function will have the same output nodes as its inputs
     explicit SoftmaxLayer(uint32_t in_nodes);

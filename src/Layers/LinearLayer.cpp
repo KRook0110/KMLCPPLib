@@ -3,7 +3,7 @@
 namespace kmlcpplib {
 
 LinearLayer::LinearLayer(uint32_t in_nodes, uint32_t out_nodes)
-    : in_nodes(in_nodes), out_nodes(out_nodes),
+    : LayerBase(in_nodes, out_nodes),
       w(std::make_shared<Parameter>(in_nodes, out_nodes)),
       b(std::make_shared<Parameter>(out_nodes, 1)) {}
 

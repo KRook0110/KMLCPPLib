@@ -28,5 +28,4 @@ Eigen::VectorXd SigmoidLayer::backward(Eigen::VectorXd upstream_grad) {
            (1.0 - cache.forward.array()) *
            upstream_grad.array();
 }
-
 }  // namespace kmlcpplib

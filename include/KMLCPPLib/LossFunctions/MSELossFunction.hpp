@@ -1,11 +1,11 @@
 
 #pragma once
 
-#include "KMLCPPLib/LossFunctions/ILossFunction.hpp"
+#include "KMLCPPLib/LossFunctions/LossFunctionBase.hpp"
 #include <Eigen/Dense>
 
 namespace kmlcpplib {
-class MSELossLayer : public ILossFunction {
+class MSELossLayer : public LossFunctionBase {
 
     struct Cache {
         Eigen::VectorXd y_pred;
