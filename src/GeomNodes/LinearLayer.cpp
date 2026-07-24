@@ -1,4 +1,5 @@
-#include <KMLCPPLib/Layer.hpp>
+
+#include <KMLCPPLib/Layers/LinearLayer.hpp>
 
 namespace kmlcpplib {
 

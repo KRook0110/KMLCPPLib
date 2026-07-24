@@ -29,6 +29,7 @@ compile_commands.json
 *.swo
 .DS_Store
 Thumbs.db
+.clangd
 
 # --- Dependency Managers ---
 vcpkg_installed/
