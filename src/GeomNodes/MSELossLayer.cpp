@@ -1,4 +1,4 @@
-#include <KMLCPPLib/Layer.hpp>
+#include <KMLCPPLib/LossFunctions/MSELossFunction.hpp>
 
 namespace kmlcpplib {
 

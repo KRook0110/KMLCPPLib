@@ -10,6 +10,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_library(${PROJECT_NAME} STATIC
     src/core.cpp
+    src/Parameter.cpp
     src/GeomNodes/LinearLayer.cpp
     src/GeomNodes/MSELossLayer.cpp
     src/GeomNodes/SigmoidLayer.cpp

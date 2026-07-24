@@ -1,4 +1,4 @@
-#include <KMLCPPLib/Layer.hpp>
+#include <KMLCPPLib/Layers/SoftmaxLayer.hpp>
 
 namespace kmlcpplib {
 
