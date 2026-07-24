@@ -13,7 +13,7 @@ LinearLayer::LinearLayer(LinearLayer &&other) noexcept = default;
 
 LinearLayer &LinearLayer::operator=(LinearLayer &&other) noexcept = default;
 
-Eigen::VectorXd LinearLayer::forward(Eigen::VectorXd x) {
+Eigen::VectorXd LinearLayer::forward(const Eigen::VectorXd& x) {
 
     assert(x.rows() == in_nodes);
 
@@ -21,7 +21,7 @@ Eigen::VectorXd LinearLayer::forward(Eigen::VectorXd x) {
     return w->value.transpose() * x + b->value;
 }
 
-Eigen::VectorXd LinearLayer::backward(Eigen::VectorXd upstream_grad) {
+Eigen::VectorXd LinearLayer::backward(const Eigen::VectorXd& upstream_grad) {
     assert(upstream_grad.rows() == out_nodes);
     assert(upstream_grad.cols() == 1);
 

@@ -11,7 +11,7 @@ SigmoidLayer::SigmoidLayer(SigmoidLayer&& other) noexcept = default;
 
 SigmoidLayer& SigmoidLayer::operator=(SigmoidLayer&& other) noexcept = default;
 
-Eigen::VectorXd SigmoidLayer::forward(Eigen::VectorXd x) {
+Eigen::VectorXd SigmoidLayer::forward(const Eigen::VectorXd& x) {
     assert(x.rows() == in_nodes);
 
     cache.forward = 1.0 / (1.0 + (-x).array().exp());
@@ -21,7 +21,7 @@ Eigen::VectorXd SigmoidLayer::forward(Eigen::VectorXd x) {
     return cache.forward;
 }
 
-Eigen::VectorXd SigmoidLayer::backward(Eigen::VectorXd upstream_grad) {
+Eigen::VectorXd SigmoidLayer::backward(const Eigen::VectorXd& upstream_grad) {
     assert(cache.forward.rows() == in_nodes);
 
     return (cache.forward).array() *

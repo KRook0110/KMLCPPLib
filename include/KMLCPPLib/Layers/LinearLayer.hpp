@@ -27,8 +27,8 @@ class LinearLayer : public LayerBase {
     LinearLayer(const LinearLayer &) = delete;
     LinearLayer &operator=(const LinearLayer &) = delete;
 
-    Eigen::VectorXd forward(Eigen::VectorXd input) override;
-    Eigen::VectorXd backward(Eigen::VectorXd upstream_grad) override;
+    Eigen::VectorXd forward(const Eigen::VectorXd& input) override;
+    Eigen::VectorXd backward(const Eigen::VectorXd& upstream_grad) override;
 
     [[nodiscard]] virtual std::vector<std::shared_ptr<Parameter>>
     get_params() const override {

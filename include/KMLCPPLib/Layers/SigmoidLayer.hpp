@@ -23,8 +23,8 @@ class SigmoidLayer : public LayerBase {
     SigmoidLayer(const SigmoidLayer &) = delete;
     SigmoidLayer &operator=(const SigmoidLayer &) = delete;
 
-    Eigen::VectorXd forward(Eigen::VectorXd input) override;
-    Eigen::VectorXd backward(Eigen::VectorXd upstream_grad) override;
+    Eigen::VectorXd forward(const Eigen::VectorXd& input) override;
+    Eigen::VectorXd backward(const Eigen::VectorXd& upstream_grad) override;
 };
 
 } // namespace kmlcpplib

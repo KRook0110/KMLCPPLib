@@ -22,8 +22,8 @@ class SoftmaxLayer : public LayerBase {
     SoftmaxLayer(const SoftmaxLayer&) = delete;
     SoftmaxLayer& operator=(const SoftmaxLayer&) = delete;
 
-    Eigen::VectorXd forward(Eigen::VectorXd input) override;
-    Eigen::VectorXd backward(Eigen::VectorXd upstream_grad) override;
+    Eigen::VectorXd forward(const Eigen::VectorXd& input) override;
+    Eigen::VectorXd backward(const Eigen::VectorXd& upstream_grad) override;
 
 };
 
