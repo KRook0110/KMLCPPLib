@@ -6,18 +6,15 @@
 
 namespace kmlcpplib {
 class MSELossLayer : public LossFunctionBase {
-
-    struct Cache {
+    struct {
         Eigen::VectorXd y_pred;
         Eigen::VectorXd y_true;
-    } m_cache;
-
-    uint32_t m_in_nodes;
-
+    } cache;
   public:
-    explicit MSELossLayer(uint32_t in_nodes);
+    using LossFunctionBase::LossFunctionBase;
 
-    Eigen::VectorXd forward(const Eigen::VectorXd& y_pred,const Eigen::VectorXd& y_true) override;
+    Eigen::VectorXd forward(const Eigen::VectorXd &y_pred,
+                            const Eigen::VectorXd &y_true) override;
     Eigen::VectorXd backward() override;
 };
 } // namespace kmlcpplib
