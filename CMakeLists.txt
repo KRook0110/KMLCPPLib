@@ -12,6 +12,8 @@ add_library(${PROJECT_NAME} STATIC
     src/core.cpp
     src/GeomNodes/LinearLayer.cpp
     src/GeomNodes/MSELossLayer.cpp
+    src/GeomNodes/SigmoidLayer.cpp
+    src/GeomNodes/SoftmaxLayer.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)

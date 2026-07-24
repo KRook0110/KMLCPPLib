@@ -67,5 +67,16 @@ int main() {
                   << "  expected=" << (2.0 * tx + 1.0) << std::endl;
     }
 
+    std::cout << "\n--- Testing Softmax Layer ---" << std::endl;
+    kmlcpplib::SoftmaxLayer softmaxLayer(3);
+    Eigen::VectorXd test_x(3);
+    test_x << 1.0, 2.0, 3.0;
+    Eigen::VectorXd sm_out = softmaxLayer.forward_feed(test_x);
+    std::cout << "Softmax forward output: " << sm_out.transpose() << std::endl;
+    Eigen::VectorXd sm_past(3);
+    sm_past << 0.1, 0.2, 0.3;
+    Eigen::VectorXd sm_grad = softmaxLayer.backward_prop(sm_past, 0.01f);
+    std::cout << "Softmax backward gradient: " << sm_grad.transpose() << std::endl;
+
     return 0;
 }
