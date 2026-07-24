@@ -1,11 +1,11 @@
 #pragma once
 
-#include <KMLCPPLib/Layers/ILayer.hpp>
+#include <KMLCPPLib/Layers/LayerBase.hpp>
 
 
 namespace kmlcpplib {
 
-class SoftmaxLayer : public ILayer {
+class SoftmaxLayer : public LayerBase {
     struct Impl;
     std::unique_ptr<Impl> pImpl;
 

@@ -2,18 +2,8 @@
 
 namespace kmlcpplib {
 
-struct SigmoidLayer::Impl {
-    uint32_t in_nodes;
-
-    struct {
-        Eigen::VectorXd forward;
-    } cache;
-
-    Impl(uint32_t in_nodes) : in_nodes(in_nodes) {};
-};
-
 SigmoidLayer::SigmoidLayer(uint32_t in_nodes)
-    : pImpl(std::make_unique<Impl>(in_nodes)) {}
+    : LayerBase(in_nodes) {}
 
 SigmoidLayer::~SigmoidLayer() = default;
 
@@ -21,25 +11,22 @@ SigmoidLayer::SigmoidLayer(SigmoidLayer&& other) noexcept = default;
 
 SigmoidLayer& SigmoidLayer::operator=(SigmoidLayer&& other) noexcept = default;
 
-Eigen::VectorXd SigmoidLayer::forward_feed(Eigen::VectorXd x, Eigen::VectorXd) {
-    assert(x.rows() == pImpl->in_nodes);
+Eigen::VectorXd SigmoidLayer::forward(Eigen::VectorXd x) {
+    assert(x.rows() == in_nodes);
 
-    pImpl->cache.forward = 1.0 / (1.0 + (-x).array().exp());
+    cache.forward = 1.0 / (1.0 + (-x).array().exp());
 
-    assert(pImpl->cache.forward.rows() == pImpl->in_nodes);
+    assert(cache.forward.rows() == in_nodes);
 
-    return pImpl->cache.forward;
+    return cache.forward;
 }
 
-Eigen::VectorXd SigmoidLayer::backward_prop(Eigen::MatrixXd past,
-                                            float learning_rate) {
-    assert(pImpl->cache.forward.rows() == pImpl->in_nodes);
+Eigen::VectorXd SigmoidLayer::backward(Eigen::VectorXd upstream_grad) {
+    assert(cache.forward.rows() == in_nodes);
 
-    return (pImpl->cache.forward).array() *
-           (1.0 - pImpl->cache.forward.array()) *
-           past.array();
+    return (cache.forward).array() *
+           (1.0 - cache.forward.array()) *
+           upstream_grad.array();
 }
-
-void SigmoidLayer::update() {}
 
 }  // namespace kmlcpplib

@@ -1,13 +1,15 @@
 #pragma once
 
-#include <KMLCPPLib/Layers/ILayer.hpp>
+#include <KMLCPPLib/Layers/LayerBase.hpp>
 
 namespace kmlcpplib {
 
-class SigmoidLayer : public ILayer {
-    struct Impl;
-    std::unique_ptr<Impl> pImpl;
+class SigmoidLayer : public LayerBase {
+    private:
+        struct {
+            Eigen::VectorXd forward;
 
+        } cache;
   public:
     // sigmoid function will have the same output nodes as its inputs
     explicit SigmoidLayer(uint32_t in_nodes);

@@ -6,10 +6,16 @@
 #include <memory>
 
 namespace kmlcpplib {
-class ILayer {
+class LayerBase {
   protected:
+    uint32_t in_nodes, out_nodes;
+
   public:
-    virtual ~ILayer() {};
+    explicit LayerBase(uint32_t in_nodes)
+        : in_nodes(in_nodes), out_nodes(in_nodes) {}
+    explicit LayerBase(uint32_t in_nodes, uint32_t out_nodes)
+        : in_nodes(in_nodes), out_nodes(out_nodes) {}
+    virtual ~LayerBase() {};
     virtual Eigen::VectorXd forward(Eigen::VectorXd input) = 0;
     virtual Eigen::VectorXd backward(Eigen::VectorXd upstream_grad) = 0;
 

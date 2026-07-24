@@ -1,11 +1,11 @@
 #pragma once
 
-#include <KMLCPPLib/Layers/ILayer.hpp>
+#include <KMLCPPLib/Layers/LayerBase.hpp>
 #include <KMLCPPLib/Parameter.hpp>
 
 namespace kmlcpplib {
 
-class LinearLayer : public ILayer {
+class LinearLayer : public LayerBase {
     uint32_t in_nodes;
     uint32_t out_nodes;
     std::shared_ptr<Parameter> w;
