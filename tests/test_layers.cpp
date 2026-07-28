@@ -2,6 +2,8 @@
 #include <KMLCPPLib/Layers/LinearLayer.hpp>
 #include <KMLCPPLib/Layers/SigmoidLayer.hpp>
 #include <KMLCPPLib/Layers/SoftmaxLayer.hpp>
+#include <KMLCPPLib/Layers/SequenceLayer.hpp>
+#include <memory>
 
 TEST(LinearLayerTest, ForwardAndBackward) {
     kmlcpplib::LinearLayer layer(2, 3);
@@ -64,3 +66,25 @@ TEST(SoftmaxLayerTest, ForwardAndBackward) {
     Eigen::VectorXd dx = layer.backward(upstream_grad);
     EXPECT_EQ(dx.rows(), 3);
 }
+
+TEST(SequenceLayerTest, GetParams) {
+    auto layer1 = std::make_shared<kmlcpplib::LinearLayer>(2, 3);
+    auto layer2 = std::make_shared<kmlcpplib::SigmoidLayer>(3);
+    auto layer3 = std::make_shared<kmlcpplib::LinearLayer>(3, 1);
+
+    std::vector<std::shared_ptr<kmlcpplib::LayerBase>> layers = {layer1, layer2, layer3};
+    kmlcpplib::SequenceLayer seq(layers);
+
+    auto seq_params = seq.get_params();
+
+    // LinearLayer(2,3) has 2 params (weights, bias), SigmoidLayer has 0, LinearLayer(3,1) has 2 params
+    auto layer1_params = layer1->get_params();
+    auto layer3_params = layer3->get_params();
+
+    ASSERT_EQ(seq_params.size(), 4);
+    EXPECT_EQ(seq_params[0], layer1_params[0]);
+    EXPECT_EQ(seq_params[1], layer1_params[1]);
+    EXPECT_EQ(seq_params[2], layer3_params[0]);
+    EXPECT_EQ(seq_params[3], layer3_params[1]);
+}
+

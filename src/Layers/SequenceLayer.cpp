@@ -6,8 +6,12 @@ namespace kmlcpplib {
 SequenceLayer::SequenceLayer(
     const std::vector<std::shared_ptr<LayerBase>> &in_layers)
     : LayerBase(in_layers.front()->get_in_nodes(),
-                in_layers.front()->get_out_nodes()),
-      stored_layers(in_layers) {}
+                in_layers.back()->get_out_nodes()),
+      stored_layers(in_layers) {
+          for(int i =1;i < in_layers.size();i++) {
+              assert(in_layers[i - 1]->get_out_nodes() == in_layers[i]->get_in_nodes() && "Layer node mismatch");
+          }
+      }
 
 Eigen::VectorXd SequenceLayer::forward(const Eigen::VectorXd &x) {
     Eigen::VectorXd latest_output = x;
@@ -21,8 +25,8 @@ Eigen::VectorXd SequenceLayer::backward(const Eigen::VectorXd &upstream_grad) {
 
     Eigen::VectorXd latest_upstream_grad = upstream_grad;
 
-    for(int i = stored_layers.size() - 1;i >=0 ;--i) {
-        latest_upstream_grad = stored_layers[i]->backward(latest_upstream_grad);
+    for( auto it = stored_layers.rbegin();it != stored_layers.rend() ; ++it) {
+        latest_upstream_grad = (*it)->backward(latest_upstream_grad);
     }
     return latest_upstream_grad;
 }

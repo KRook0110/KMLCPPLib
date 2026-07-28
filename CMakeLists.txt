@@ -15,6 +15,7 @@ add_library(${PROJECT_NAME} STATIC
     src/LossFunctions/MSELossFunction.cpp
     src/Layers/SigmoidLayer.cpp
     src/Layers/SoftmaxLayer.cpp
+    src/Layers/SequenceLayer.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
