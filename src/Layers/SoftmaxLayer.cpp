@@ -19,13 +19,8 @@ Eigen::VectorXd SoftmaxLayer::forward(const Eigen::VectorXd& x) {
 }
 
 Eigen::VectorXd SoftmaxLayer::backward(const Eigen::VectorXd& upstream_grad) {
-
-    Eigen::MatrixXd res = cache.forward.asDiagonal() * (
-            Eigen::MatrixXd::Identity(in_nodes, in_nodes) - cache.forward.transpose()
-            );
-
-
-    return res * upstream_grad;
+    Eigen::MatrixXd res = Eigen::MatrixXd(cache.forward.asDiagonal()) - (cache.forward * cache.forward.transpose());
+    return  res * upstream_grad;
 }
 
 }  // namespace kmlcpplib

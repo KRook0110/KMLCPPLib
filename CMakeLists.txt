@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.14)
 
 project(KMLCPPLib VERSION 2.0 LANGUAGES CXX)
 
@@ -21,6 +21,20 @@ target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_link_libraries(${PROJECT_NAME} PUBLIC Eigen3::Eigen)
 
 add_executable(TestingNN cmd/main.cpp)
-
 target_link_libraries(TestingNN PRIVATE ${PROJECT_NAME})
 
+# GTest Integration
+include(CTest)
+include(GoogleTest)
+
+if(BUILD_TESTING)
+    include(FetchContent)
+    FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/refs/tags/v1.15.0.zip
+        FIND_PACKAGE_ARGS NAMES GTest
+    )
+    FetchContent_MakeAvailable(googletest)
+
+    add_subdirectory(tests)
+endif()

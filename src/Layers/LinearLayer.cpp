@@ -27,6 +27,6 @@ Eigen::VectorXd LinearLayer::backward(const Eigen::VectorXd& upstream_grad) {
 
     w->gradient = cache.x * upstream_grad.transpose();
     b->gradient = upstream_grad;
-    return w->value * upstream_grad.transpose();
+    return w->value * upstream_grad;
 }
 } // namespace kmlcpplib

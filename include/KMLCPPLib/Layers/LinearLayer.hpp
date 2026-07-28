@@ -6,8 +6,6 @@
 namespace kmlcpplib {
 
 class LinearLayer : public LayerBase {
-    uint32_t in_nodes;
-    uint32_t out_nodes;
     std::shared_ptr<Parameter> w;
     std::shared_ptr<Parameter> b;
 
