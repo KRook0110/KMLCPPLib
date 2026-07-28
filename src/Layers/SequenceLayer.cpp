@@ -29,7 +29,12 @@ Eigen::VectorXd SequenceLayer::backward(const Eigen::VectorXd &upstream_grad) {
 
 [[nodiscard]] std::vector<std::shared_ptr<Parameter>>
 SequenceLayer::get_params() const  {
-
+    std::vector<std::shared_ptr<Parameter>> combined_list;
+    for(const auto &layer: stored_layers) {
+        auto layer_params = layer->get_params();
+        combined_list.insert(combined_list.end(), layer_params.begin(), layer_params.end());
+    }
+    return combined_list;
 }
 
 } // namespace kmlcpplib
