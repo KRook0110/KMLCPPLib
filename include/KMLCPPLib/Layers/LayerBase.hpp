@@ -23,6 +23,14 @@ class LayerBase {
     get_params() const {
         return {};
     };
+
+    uint32_t get_in_nodes() {
+        return in_nodes;
+    }
+
+    uint32_t get_out_nodes() {
+        return out_nodes;
+    }
 };
 
 } // namespace kmlcpplib
