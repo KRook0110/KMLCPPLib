@@ -8,6 +8,7 @@
 #include "KMLCPPLib/Layers/SigmoidLayer.hpp"
 #include "KMLCPPLib/Layers/SequenceLayer.hpp"
 #include "KMLCPPLib/LossFunctions/MSELossFunction.hpp"
+#include "KMLCPPLib/WeightInitializors/RandomizedWeight.hpp"
 
 int main() {
     // 1. XOR Dataset
@@ -34,18 +35,8 @@ int main() {
     kmlcpplib::SequenceLayer model({l1, a1, l2, a2});
     kmlcpplib::MSELossFunction loss_fn(1);
 
-    // Randomize initial weights (since parameters default to zero)
-    std::mt19937 rng(42);
-    std::normal_distribution<double> dist(0.0, 0.5);
-
     auto params = model.get_params();
-    for (auto &param : params) {
-        for (int r = 0; r < param->value.rows(); ++r) {
-            for (int c = 0; c < param->value.cols(); ++c) {
-                param->value(r, c) = dist(rng);
-            }
-        }
-    }
+    kmlcpplib::randomize_weights(params);
 
     // 3. Training Loop
     const int epochs = 10000;
