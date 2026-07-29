@@ -5,7 +5,7 @@
 #include <Eigen/Dense>
 
 namespace kmlcpplib {
-class MSELossLayer : public LossFunctionBase {
+class MSELossFunction : public LossFunctionBase {
     struct {
         Eigen::VectorXd y_pred;
         Eigen::VectorXd y_true;
@@ -13,7 +13,7 @@ class MSELossLayer : public LossFunctionBase {
   public:
     using LossFunctionBase::LossFunctionBase;
 
-    Eigen::VectorXd forward(const Eigen::VectorXd &y_pred,
+    double forward(const Eigen::VectorXd &y_pred,
                             const Eigen::VectorXd &y_true) override;
     Eigen::VectorXd backward() override;
 };

@@ -32,7 +32,7 @@ int main() {
     auto a2 = std::make_shared<kmlcpplib::SigmoidLayer>(1);
 
     kmlcpplib::SequenceLayer model({l1, a1, l2, a2});
-    kmlcpplib::MSELossLayer loss_fn(1);
+    kmlcpplib::MSELossFunction loss_fn(1);
 
     // Randomize initial weights (since parameters default to zero)
     std::mt19937 rng(42);

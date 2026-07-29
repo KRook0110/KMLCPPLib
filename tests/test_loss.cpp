@@ -2,7 +2,7 @@
 #include <KMLCPPLib/LossFunctions/MSELossFunction.hpp>
 
 TEST(MSELossFunctionTest, ForwardAndBackward) {
-    kmlcpplib::MSELossLayer loss_layer(2);
+    kmlcpplib::MSELossFunction loss_layer(2);
 
     Eigen::VectorXd y_pred(2);
     y_pred << 2.0, 4.0;
