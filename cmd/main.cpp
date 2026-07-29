@@ -64,8 +64,8 @@ int main() {
 
             // Forward pass
             Eigen::VectorXd pred = model.forward(X[i]);
-            Eigen::VectorXd loss = loss_fn.forward(pred, Y[i]);
-            total_loss += loss(0);
+            double loss = loss_fn.forward(pred, Y[i]);
+            total_loss += loss;
 
             // Backward pass
             Eigen::VectorXd loss_grad = loss_fn.backward();

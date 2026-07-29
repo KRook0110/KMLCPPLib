@@ -16,6 +16,7 @@ add_library(${PROJECT_NAME} STATIC
     src/Layers/SigmoidLayer.cpp
     src/Layers/SoftmaxLayer.cpp
     src/Layers/SequenceLayer.cpp
+    src/WeightInitializers/RandomizedWeight.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
