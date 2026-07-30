@@ -29,4 +29,5 @@ Eigen::VectorXd LinearLayer::backward(const Eigen::VectorXd& upstream_grad) {
     b->gradient = upstream_grad;
     return w->value * upstream_grad;
 }
+
 } // namespace kmlcpplib
