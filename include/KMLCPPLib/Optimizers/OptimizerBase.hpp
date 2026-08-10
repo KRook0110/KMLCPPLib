@@ -14,7 +14,7 @@ class OptimizerBase {
     virtual void step() = 0;
 
     virtual void set_learning_rate(double learning_rate) {
-        learning_rate = learning_rate;
+        this->learning_rate = learning_rate;
     }
 
     virtual double get_learning_rate() {

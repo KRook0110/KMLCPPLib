@@ -3,7 +3,7 @@
 #include "KMLCPPLib/Optimizers/OptimizerBase.hpp"
 
 namespace kmlcpplib {
-class GradientDescentOptimizer : OptimizerBase {
+class GradientDescentOptimizer : public OptimizerBase {
   private:
 
   public:
