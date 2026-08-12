@@ -3,6 +3,7 @@ add_executable(unit_tests
     test_layers.cpp
     test_loss.cpp
     test_randomized_weight.cpp
+    test_optimizer.cpp
 )
 
 target_link_libraries(unit_tests PRIVATE ${PROJECT_NAME} GTest::gtest_main GTest::gtest)

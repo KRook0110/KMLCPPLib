@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <KMLCPPLib/Parameter.hpp>
-#include <KMLCPPLib/WeightInitializors/RandomizedWeight.hpp>
+#include <KMLCPPLib/WeightInitializers/RandomizedWeight.hpp>
 #include <memory>
 #include <vector>
 
