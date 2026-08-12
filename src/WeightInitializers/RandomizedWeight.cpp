@@ -2,7 +2,7 @@
 #include <vector>
 
 #include "KMLCPPLib/Parameter.hpp"
-#include "KMLCPPLib/WeightInitializors/RandomizedWeight.hpp"
+#include "KMLCPPLib/WeightInitializers/RandomizedWeight.hpp"
 
 namespace kmlcpplib {
 

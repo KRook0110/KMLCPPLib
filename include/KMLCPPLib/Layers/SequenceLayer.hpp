@@ -11,14 +11,6 @@ class SequenceLayer : public LayerBase {
   public:
     explicit SequenceLayer(
         const std::vector<std::shared_ptr<LayerBase>> &stored_layers);
-    ~SequenceLayer() override = default;
-
-    SequenceLayer(SequenceLayer &&other) noexcept = default;
-    SequenceLayer &operator=(SequenceLayer &&other) noexcept = default;
-
-    SequenceLayer(const SequenceLayer &) = delete;
-    SequenceLayer &operator=(const SequenceLayer &) = delete;
-
     Eigen::VectorXd forward(const Eigen::VectorXd &input) override;
     Eigen::VectorXd backward(const Eigen::VectorXd &upstream_grad) override;
 

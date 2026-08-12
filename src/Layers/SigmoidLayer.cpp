@@ -5,12 +5,6 @@ namespace kmlcpplib {
 SigmoidLayer::SigmoidLayer(uint32_t in_nodes)
     : LayerBase(in_nodes) {}
 
-SigmoidLayer::~SigmoidLayer() = default;
-
-SigmoidLayer::SigmoidLayer(SigmoidLayer&& other) noexcept = default;
-
-SigmoidLayer& SigmoidLayer::operator=(SigmoidLayer&& other) noexcept = default;
-
 Eigen::VectorXd SigmoidLayer::forward(const Eigen::VectorXd& x) {
     assert(x.rows() == in_nodes);
 

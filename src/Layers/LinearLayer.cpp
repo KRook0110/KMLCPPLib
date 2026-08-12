@@ -7,12 +7,6 @@ LinearLayer::LinearLayer(uint32_t in_nodes, uint32_t out_nodes)
       w(std::make_shared<Parameter>(in_nodes, out_nodes)),
       b(std::make_shared<Parameter>(out_nodes, 1)) {}
 
-LinearLayer::~LinearLayer() = default;
-
-LinearLayer::LinearLayer(LinearLayer &&other) noexcept = default;
-
-LinearLayer &LinearLayer::operator=(LinearLayer &&other) noexcept = default;
-
 Eigen::VectorXd LinearLayer::forward(const Eigen::VectorXd& x) {
 
     assert(x.rows() == in_nodes);

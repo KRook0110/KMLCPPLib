@@ -15,7 +15,15 @@ class LayerBase {
         : in_nodes(in_nodes), out_nodes(in_nodes) {}
     explicit LayerBase(uint32_t in_nodes, uint32_t out_nodes)
         : in_nodes(in_nodes), out_nodes(out_nodes) {}
-    virtual ~LayerBase() {};
+    virtual ~LayerBase() = default;
+
+    // Disable copy operations to prevent slicing
+    LayerBase(const LayerBase&) = delete;
+    LayerBase& operator=(const LayerBase&) = delete;
+
+    // Disable move operations (polymorphic copy/move is generally unsafe)
+    LayerBase(LayerBase&&) = delete;
+    LayerBase& operator=(LayerBase&&) = delete;
     virtual Eigen::VectorXd forward(const Eigen::VectorXd& input) = 0;
     virtual Eigen::VectorXd backward(const Eigen::VectorXd& upstream_grad) = 0;
 
