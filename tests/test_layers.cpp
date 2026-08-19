@@ -3,6 +3,7 @@
 #include <KMLCPPLib/Layers/SigmoidLayer.hpp>
 #include <KMLCPPLib/Layers/SoftmaxLayer.hpp>
 #include <KMLCPPLib/Layers/SequenceLayer.hpp>
+#include <KMLCPPLib/Layers/ReluLayer.hpp>
 #include <memory>
 
 TEST(LinearLayerTest, ForwardAndBackward) {
@@ -86,5 +87,25 @@ TEST(SequenceLayerTest, GetParams) {
     EXPECT_EQ(seq_params[1], layer1_params[1]);
     EXPECT_EQ(seq_params[2], layer3_params[0]);
     EXPECT_EQ(seq_params[3], layer3_params[1]);
+}
+
+TEST(ReluLayerTest, ForwardAndBackward) {
+    kmlcpplib::ReluLayer layer(3);
+    Eigen::VectorXd input(3);
+    input << -1.0, 0.0, 2.0;
+
+    Eigen::VectorXd output = layer.forward(input);
+    EXPECT_EQ(output.rows(), 3);
+    EXPECT_NEAR(output(0), 0.0, 1e-6);
+    EXPECT_NEAR(output(1), 0.0, 1e-6);
+    EXPECT_NEAR(output(2), 2.0, 1e-6);
+
+    Eigen::VectorXd upstream_grad(3);
+    upstream_grad << 1.0, 2.0, 3.0;
+    Eigen::VectorXd dx = layer.backward(upstream_grad);
+    EXPECT_EQ(dx.rows(), 3);
+    EXPECT_NEAR(dx(0), 0.0, 1e-6);
+    EXPECT_NEAR(dx(1), 0.0, 1e-6);
+    EXPECT_NEAR(dx(2), 3.0, 1e-6);
 }
 
