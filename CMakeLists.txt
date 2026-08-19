@@ -15,6 +15,7 @@ add_library(${PROJECT_NAME} STATIC
     src/LossFunctions/MSELossFunction.cpp
     src/Layers/SigmoidLayer.cpp
     src/Layers/SoftmaxLayer.cpp
+    src/Layers/ReluLayer.cpp
     src/Layers/SequenceLayer.cpp
     src/Optimizers/GradientDescentOptimizer.cpp
     src/WeightInitializers/RandomizedWeight.cpp
