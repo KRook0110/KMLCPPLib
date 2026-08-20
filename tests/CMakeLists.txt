@@ -14,6 +14,7 @@ add_executable(unit_tests
     test_loss.cpp
     test_randomized_weight.cpp
     test_optimizer.cpp
+    test_mnist_reader.cpp
 )
 
 target_link_libraries(unit_tests PRIVATE ${PROJECT_NAME} GTest::gtest_main GTest::gtest)
