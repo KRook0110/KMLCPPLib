@@ -10,6 +10,7 @@ add_library(${PROJECT_NAME} STATIC
     Optimizers/GradientDescentOptimizer.cpp
     WeightInitializers/RandomizedWeight.cpp
     Parsers/MNIST/MNISTReader.cpp
+    Parsers/MNIST/MNISTImageViewer.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)

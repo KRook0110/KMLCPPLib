@@ -111,8 +111,8 @@ MNISTReader::ReadOutput MNISTReader::read(fs::path imagePath,
 }
 
 MNISTReader::MNISTDataset MNISTReader::loadData() {
-    return {read(trainingImagesPath, trainingLabelsPath),
-            read(testImagesPath, testLabelsPath)};
+    return {.train = read(trainingImagesPath, trainingLabelsPath),
+            .test = read(testImagesPath, testLabelsPath)};
 }
 
 } // namespace kmlcpplib
