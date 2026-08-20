@@ -8,37 +8,15 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(Eigen3 REQUIRED)
 
-add_library(${PROJECT_NAME} STATIC
-    src/core.cpp
-    src/Parameter.cpp
-    src/Layers/LinearLayer.cpp
-    src/LossFunctions/MSELossFunction.cpp
-    src/Layers/SigmoidLayer.cpp
-    src/Layers/SoftmaxLayer.cpp
-    src/Layers/ReluLayer.cpp
-    src/Layers/SequenceLayer.cpp
-    src/Optimizers/GradientDescentOptimizer.cpp
-    src/WeightInitializers/RandomizedWeight.cpp
-)
+add_subdirectory(src)
 
-target_include_directories(${PROJECT_NAME} PUBLIC include)
-target_link_libraries(${PROJECT_NAME} PUBLIC Eigen3::Eigen)
 
-add_executable(TestingNN cmd/main.cpp)
-target_link_libraries(TestingNN PRIVATE ${PROJECT_NAME})
+add_subdirectory(cmd)
 
-# GTest Integration
+# Testing Integration
 include(CTest)
-include(GoogleTest)
 
 if(BUILD_TESTING)
-    include(FetchContent)
-    FetchContent_Declare(
-        googletest
-        URL https://github.com/google/googletest/archive/refs/tags/v1.15.0.zip
-        FIND_PACKAGE_ARGS NAMES GTest
-    )
-    FetchContent_MakeAvailable(googletest)
-
     add_subdirectory(tests)
 endif()
+

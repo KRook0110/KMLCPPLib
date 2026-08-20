@@ -1,3 +1,13 @@
+include(FetchContent)
+FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/refs/tags/v1.15.0.zip
+    FIND_PACKAGE_ARGS NAMES GTest
+)
+FetchContent_MakeAvailable(googletest)
+
+include(GoogleTest)
+
 add_executable(unit_tests
     test_parameter.cpp
     test_layers.cpp
