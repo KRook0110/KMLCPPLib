@@ -1,11 +1,10 @@
-
 #pragma once
 
 #include "KMLCPPLib/LossFunctions/LossFunctionBase.hpp"
 #include <Eigen/Dense>
 
 namespace kmlcpplib {
-class MSELossFunction : public LossFunctionBase {
+class MeanSquaredError : public LossFunctionBase {
     struct {
         Eigen::VectorXd y_pred;
         Eigen::VectorXd y_true;

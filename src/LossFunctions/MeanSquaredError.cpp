@@ -1,9 +1,9 @@
-#include <KMLCPPLib/LossFunctions/MSELossFunction.hpp>
+#include <KMLCPPLib/LossFunctions/MeanSquaredError.hpp>
 
 namespace kmlcpplib {
 
 
-double MSELossFunction::forward(const Eigen::VectorXd& y_pred,
+double MeanSquaredError::forward(const Eigen::VectorXd& y_pred,
                                            const Eigen::VectorXd& y_true) {
     assert(y_pred.rows() == in_nodes);
     cache.y_pred = y_pred;
@@ -14,7 +14,7 @@ double MSELossFunction::forward(const Eigen::VectorXd& y_pred,
     return  scalar_loss;
 }
 
-Eigen::VectorXd MSELossFunction::backward() {
+Eigen::VectorXd MeanSquaredError::backward() {
     Eigen::VectorXd del_y = cache.y_pred - cache.y_true;
     return 2.0 * (del_y) / in_nodes;
 }

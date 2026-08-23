@@ -1,8 +1,9 @@
 add_library(${PROJECT_NAME} STATIC
     core.cpp
     Parameter.cpp
+    LossFunctions/MeanSquaredError.cpp
+    LossFunctions/BinaryCrossEntropy.cpp
     Layers/LinearLayer.cpp
-    LossFunctions/MSELossFunction.cpp
     Layers/SigmoidLayer.cpp
     Layers/SoftmaxLayer.cpp
     Layers/ReluLayer.cpp
