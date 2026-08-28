@@ -2,18 +2,15 @@
 
 namespace kmlcpplib {
 
-
-SoftmaxLayer::SoftmaxLayer(uint32_t in_nodes)
-    : LayerBase(in_nodes) {}
-
 Eigen::VectorXd SoftmaxLayer::forward(const Eigen::VectorXd& x) {
-    double maxCoeff = x.maxCoeff();
-    Eigen::VectorXd exps = (x.array() - maxCoeff).exp();
+    Eigen::VectorXd a = x.array() * this->inverse_temperature;
+    double maxCoeff = a.maxCoeff();
+    Eigen::VectorXd exps = (a.array() - maxCoeff).exp();
     return cache.forward = exps / exps.sum();
 }
 
 Eigen::VectorXd SoftmaxLayer::backward(const Eigen::VectorXd& upstream_grad) {
-    Eigen::MatrixXd res = Eigen::MatrixXd(cache.forward.asDiagonal()) - (cache.forward * cache.forward.transpose());
+    Eigen::MatrixXd res = this->inverse_temperature * (Eigen::MatrixXd(cache.forward.asDiagonal()) - (cache.forward * cache.forward.transpose()));
     return  res * upstream_grad;
 }
 
