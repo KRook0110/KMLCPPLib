@@ -3,6 +3,7 @@ add_library(${PROJECT_NAME} STATIC
     Parameter.cpp
     LossFunctions/MeanSquaredError.cpp
     LossFunctions/BinaryCrossEntropy.cpp
+    LossFunctions/CategoricalCrossEntropy.cpp
     Layers/LinearLayer.cpp
     Layers/SigmoidLayer.cpp
     Layers/SoftmaxLayer.cpp
