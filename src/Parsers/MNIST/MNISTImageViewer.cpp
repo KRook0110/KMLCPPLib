@@ -30,8 +30,7 @@ void renderImage(Eigen::MatrixXd data, std::string ramp, double data_min,
 void renderImages(std::vector<Eigen::MatrixXd> data, std::string ramp,
                   double data_min, double data_max) {
     for (int i = 0; i < data.size(); i++) {
-        std::cout << "--- Image [ " + std::to_string(i + 1) + "] ---"
-                  << std::endl;
+        std::cout << "--- Image [ " + std::to_string(i + 1) + "] ---" << std::endl;
         renderImage(data[i], ramp, data_min, data_max);
     }
 }
